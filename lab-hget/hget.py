@@ -85,16 +85,28 @@ def connect_to_server(server_name):
        ...
     error: [Errno 111] Connection refused
     """
-
+   
     # Buscar direccion ip
     ### COMPLETAR ABAJO DE ESTA LINEA
+
+    ip_address = socket.gethostbyname(server_name)
     # Aqui deberian obtener la direccion ip del servidor y asignarla
     # a ip_address
     ### DEJAR LAS DOS LINEAS SIGUIENTES TAL COMO ESTAN
     sys.stderr.write("Contactando al servidor en %s...\n" % ip_address)
     # Crear socket
     ### COMPLETAR ABAJO DE ESTA LINEA
-        #Aqui deben conectarse al puerto correcto del servidor
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        s.connect((ip_address, 80)) 
+    # originally, it was 
+    # except Exception, e: 
+    # but this syntax is not supported anymore. 
+    except Exception as e: 
+        print("no wachin la flashiaste con la direccion ameo")
+    finally:
+        return s
+    #Aqui deben conectarse al puerto correcto del servidor
     ### NO MODIFICAR POR FUERA DE ESTA FUNCION
 
 
