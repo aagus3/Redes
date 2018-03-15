@@ -103,7 +103,7 @@ def connect_to_server(server_name):
     # except Exception, e: 
     # but this syntax is not supported anymore. 
     except Exception as e: 
-        print("no wachin la flashiaste con la direccion ameo")
+        print("Error en la conexión")
     finally:
         return s
     #Aqui deben conectarse al puerto correcto del servidor
