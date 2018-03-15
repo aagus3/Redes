@@ -88,20 +88,22 @@ def connect_to_server(server_name):
    
     # Buscar direccion ip
     ### COMPLETAR ABAJO DE ESTA LINEA
-
-    ip_address = socket.gethostbyname(server_name)
-    # Aqui deberian obtener la direccion ip del servidor y asignarla
+    # Aca se obtiene la ip de una direccion url dada
     # a ip_address
+    ip_address = socket.gethostbyname(server_name)
     ### DEJAR LAS DOS LINEAS SIGUIENTES TAL COMO ESTAN
     sys.stderr.write("Contactando al servidor en %s...\n" % ip_address)
     # Crear socket
     ### COMPLETAR ABAJO DE ESTA LINEA
+    # Se crea el objeto socket con la función socket(), esta función toma dos argumentos
+    # EL primer argumento expresa el tipo de direcciones al que el socket se puede comunicar (el protocolo), en este caso AF_INET se
+    # podra comunicar con direcciones que cumplan con el protocolo IPV4. EL segundo argumento toma el tipo de socket que se instanciará,
+    # el tipo de socket SOCK_STREAM permite una comunicación secuencial, basada en corrientes de bytes
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # Con la cláusula try compruebo que la conexión del socket con la ip y el puerto dado sea exitosa, en el caso de que no
+    # se lanza una excepción comunicando que hubo un error, si no hubo problemas se procede a devolver el socket
     try:
         s.connect((ip_address, 80)) 
-    # originally, it was 
-    # except Exception, e: 
-    # but this syntax is not supported anymore. 
     except Exception as e: 
         print("Error en la conexión")
     finally:
