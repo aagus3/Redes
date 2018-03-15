@@ -104,7 +104,7 @@ def connect_to_server(server_name):
     # se lanza una excepción comunicando que hubo un error, si no hubo problemas se procede a devolver el socket
     try:
         s.connect((ip_address, 80)) 
-    except Exception as e: 
+    except socket.error: 
         print("Error en la conexión")
     finally:
         return s
