@@ -95,17 +95,21 @@ def connect_to_server(server_name):
     sys.stderr.write("Contactando al servidor en %s...\n" % ip_address)
     # Crear socket
     ### COMPLETAR ABAJO DE ESTA LINEA
-    # Se crea el objeto socket con la función socket(), esta función toma dos argumentos
-    # EL primer argumento expresa el tipo de direcciones al que el socket se puede comunicar (el protocolo), en este caso AF_INET se
-    # podra comunicar con direcciones que cumplan con el protocolo IPV4. EL segundo argumento toma el tipo de socket que se instanciará,
-    # el tipo de socket SOCK_STREAM permite una comunicación secuencial, basada en corrientes de bytes
+    """ Se crea el objeto socket con la función socket(), esta función toma 
+    dos argumentos. El primer argumento expresa el tipo de direcciones al 
+    que el socket se puede comunicar (el protocolo), en este caso AF_INET se
+    podra comunicar con direcciones que cumplan con el protocolo IPV4. El
+    segundo argumento toma el tipo de socket que se instanciará, el tipo de 
+    socket SOCK_STREAM permite una comunicación secuencial, basada en 
+    corrientes de bytes"""
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # Con la cláusula try compruebo que la conexión del socket con la ip y el puerto dado sea exitosa, en el caso de que no
-    # se lanza una excepción comunicando que hubo un error, si no hubo problemas se procede a devolver el socket
+    """ No hay necesidad de implementar en esta función una excepción para 
+    comprobar que la conexión sea exitosa, ya que ya esta implementado
+    en otras funciones que se ejecutaran. La función connect() establece una
+    conexión con un host, toma como parámetros la ip y el puerto al que
+    se desea conectar"""
     s.connect((ip_address, 80)) 
     return s
-    # No hay necesidad de implementar en esta funció una excepción para comprobar que la conexión sea exitosa, ya que ya esta 
-    # implementado en otras funciones que se ejecutaran.
     #Aqui deben conectarse al puerto correcto del servidor
     ### NO MODIFICAR POR FUERA DE ESTA FUNCION
 
