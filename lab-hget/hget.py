@@ -22,7 +22,7 @@ import optparse
 
 PREFIX = "http://"
 HTTP_PORT = 80   # El puerto por convencion para HTTP,
-                 # según http://tools.ietf.org/html/rfc1700
+# según http://tools.ietf.org/html/rfc1700
 HTTP_OK = "200"  # El codigo esperado para respuesta exitosa.
 
 
@@ -85,33 +85,32 @@ def connect_to_server(server_name):
        ...
     error: [Errno 111] Connection refused
     """
-   
     # Buscar direccion ip
-    ### COMPLETAR ABAJO DE ESTA LINEA
+    # -- COMPLETAR ABAJO DE ESTA LINEA
     # Aca se obtiene la ip de una direccion url dada
     # a ip_address
     ip_address = socket.gethostbyname(server_name)
-    ### DEJAR LAS DOS LINEAS SIGUIENTES TAL COMO ESTAN
+    # -- DEJAR LAS DOS LINEAS SIGUIENTES TAL COMO ESTAN
     sys.stderr.write("Contactando al servidor en %s...\n" % ip_address)
     # Crear socket
-    ### COMPLETAR ABAJO DE ESTA LINEA
-    """ Se crea el objeto socket con la función socket(), esta función toma 
-    dos argumentos. El primer argumento expresa el tipo de direcciones al 
+    # -- COMPLETAR ABAJO DE ESTA LINEA
+    """ Se crea el objeto socket con la función socket(), esta función toma
+    dos argumentos. El primer argumento expresa el tipo de direcciones al
     que el socket se puede comunicar (el protocolo), en este caso AF_INET se
     podra comunicar con direcciones que cumplan con el protocolo IPV4. El
-    segundo argumento toma el tipo de socket que se instanciará, el tipo de 
-    socket SOCK_STREAM permite una comunicación secuencial, basada en 
+    segundo argumento toma el tipo de socket que se instanciará, el tipo de
+    socket SOCK_STREAM permite una comunicación secuencial, basada en
     corrientes de bytes"""
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    """ No hay necesidad de implementar en esta función una excepción para 
+    """ No hay necesidad de implementar en esta función una excepción para
     comprobar que la conexión sea exitosa, ya que ya esta implementado
     en otras funciones que se ejecutaran. La función connect() establece una
     conexión con un host, toma como parámetros la ip y el puerto al que
     se desea conectar"""
-    s.connect((ip_address, 80)) 
+    s.connect((ip_address, 80))
     return s
-    #Aqui deben conectarse al puerto correcto del servidor
-    ### NO MODIFICAR POR FUERA DE ESTA FUNCION
+    # Aqui deben conectarse al puerto correcto del servidor
+    # -- NO MODIFICAR POR FUERA DE ESTA FUNCION
 
 
 def send_request(connection, url):
@@ -179,8 +178,8 @@ def check_http_response(header):
     """
 
     elements = header.split(' ', 3)
-    return (len(elements) >= 2 and elements[0].startswith("HTTP/")
-            and elements[1] == HTTP_OK)
+    return (len(elements) >= 2 and elements[0].startswith("HTTP/") and
+            elements[1] == HTTP_OK)
 
 
 def get_response(connection, filename):
@@ -228,7 +227,7 @@ def download(url, filename):
         sys.exit(1)
     except socket.error:
         sys.stderr.write("No se pudo conectar al servidor HTTP en '%s:%d'\n"
-                            % (server, HTTP_PORT))
+                         % (server, HTTP_PORT))
         sys.exit(1)
 
     # Enviar pedido, recibir respuesta
@@ -244,7 +243,6 @@ def download(url, filename):
         # Descomentar la siguiente línea para debugging:
         # raise
         sys.exit(1)
-        
 
 
 def main():
@@ -252,7 +250,7 @@ def main():
     # Parseo de argumentos
     parser = optparse.OptionParser(usage="usage: %prog [options] http://...")
     parser.add_option("-o", "--output", help="Archivo de salida",
-                        default="download.html")
+                      default="download.html")
     options, args = parser.parse_args()
     if len(args) != 1:
         sys.stderr.write("No se indico una URL a descargar\n")
@@ -272,3 +270,4 @@ def main():
 if __name__ == "__main__":
     main()
     sys.exit(0)
+
